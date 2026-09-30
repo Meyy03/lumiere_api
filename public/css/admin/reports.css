@@ -1,0 +1,1495 @@
+.report-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    min-height: 98px;
+
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.report-topbar-title {
+    min-width: 0;
+}
+
+
+.report-topbar-title h1 {
+    margin: 0;
+
+    color: #202733;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    letter-spacing: -0.35px;
+}
+
+
+.report-topbar-title p {
+    margin: 5px 0 0;
+
+    color: #998d91;
+
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   TOPBAR ACTIONS
+   ========================================================= */
+
+.report-topbar-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.reports-dashboard {
+    padding-top: 26px;
+    padding-bottom: 50px;
+}
+
+
+/* =========================================================
+   RANGE SELECT
+   ========================================================= */
+
+.range-form {
+    margin: 0;
+}
+
+
+.range-select-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 170px;
+    height: 44px;
+
+    border: 1px solid #eadce1;
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 3px 12px rgba(72, 45, 55, 0.035);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.range-select-wrapper:hover {
+    border-color: #e4c8d2;
+}
+
+
+.range-select-wrapper:focus-within {
+    border-color: #dc7193;
+
+    box-shadow:
+        0 0 0 3px rgba(218, 75, 120, 0.08);
+}
+
+
+.range-icon {
+    position: absolute;
+
+    left: 13px;
+
+    width: 16px;
+    height: 16px;
+
+    color: #755f67;
+
+    pointer-events: none;
+}
+
+
+.range-select {
+    width: 100%;
+    height: 100%;
+
+    padding:
+        0 38px 0 40px;
+
+    border: 0;
+    outline: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    color: #332c30;
+
+    background: transparent;
+
+    font: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.range-chevron {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    transform:
+        translateY(-50%);
+
+    color: #78656c;
+
+    pointer-events: none;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.range-select-wrapper:focus-within .range-chevron {
+    transform:
+        translateY(-50%) rotate(180deg);
+}
+
+
+/* =========================================================
+   EXPORT PDF
+   ========================================================= */
+
+.export-report-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(135deg,
+            #df5c85,
+            #d84a77);
+
+    box-shadow:
+        0 6px 15px rgba(216, 74, 119, 0.18);
+
+    font-size: 11.5px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.export-report-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+
+.export-report-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(216, 74, 119, 0.25);
+}
+
+
+/* =========================================================
+   DASHBOARD-STYLE DATE PILL
+   ========================================================= */
+
+.report-date-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 118px;
+    height: 44px;
+
+    padding: 0 15px;
+
+    border: 1px solid #f0ccd8;
+    border-radius: 24px;
+
+    color: #c94470;
+
+    background: #fff5f8;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 3px 10px rgba(215, 70, 113, 0.035);
+}
+
+
+.report-date-pill svg {
+    width: 14px;
+    height: 14px;
+
+    color: #d34b77;
+}
+
+
+/* =========================================================
+   KPI GRID
+   ========================================================= */
+
+.report-kpi-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,
+            minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+
+.report-kpi-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 120px;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    border: 1px solid #eadde2;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 18px rgba(56, 37, 44, 0.035);
+
+    opacity: 0;
+
+    transform:
+        translateY(18px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.reports-ready .report-kpi-card {
+    animation:
+        reportCardIn 0.55s ease forwards;
+
+    animation-delay:
+        var(--animation-delay,
+            0ms);
+}
+
+
+.report-kpi-card:hover {
+    transform:
+        translateY(-3px) !important;
+
+    box-shadow:
+        0 10px 25px rgba(56, 37, 44, 0.075);
+}
+
+
+.kpi-icon {
+    flex: 0 0 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 13px;
+}
+
+
+.kpi-icon svg {
+    width: 23px;
+    height: 23px;
+}
+
+
+.kpi-icon span {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+.kpi-icon.sales {
+    color: #d84b78;
+
+    background: #fbe5ed;
+}
+
+
+.kpi-icon.orders {
+    color: #8f55dc;
+
+    background: #eee4fb;
+}
+
+
+.kpi-icon.items {
+    color: #e77a41;
+
+    background: #fff0e7;
+}
+
+
+.kpi-icon.average {
+    color: #bd4a91;
+
+    background: #f8e5f0;
+}
+
+
+.kpi-label {
+    display: block;
+
+    color: #776b70;
+
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+.report-kpi-card strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #202733;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.05;
+}
+
+
+.report-kpi-card small {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #988c90;
+
+    font-size: 8.5px;
+}
+
+
+/* =========================================================
+   PANEL
+   ========================================================= */
+
+.report-panel {
+    overflow: hidden;
+
+    border: 1px solid #ede2e6;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 18px rgba(55, 36, 43, 0.03);
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+}
+
+
+.reports-ready .report-panel {
+    animation:
+        reportPanelIn 0.58s ease forwards;
+
+    animation-delay:
+        var(--animation-delay,
+            100ms);
+}
+
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    min-height: 72px;
+
+    padding: 18px 20px;
+
+    border-bottom:
+        1px solid #f3eaed;
+}
+
+
+.panel-heading h3 {
+    margin: 0;
+
+    color: #202733;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.panel-heading p {
+    margin: 4px 0 0;
+
+    color: #988c90;
+
+    font-size: 9.5px;
+}
+
+
+.panel-link {
+    color: #ce2c62;
+
+    font-size: 9.5px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.panel-link:hover {
+    text-decoration: underline;
+}
+
+
+.period-chip {
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    color: #c74671;
+
+    background: #fff0f4;
+
+    font-size: 8.5px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.report-main-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.65fr) minmax(300px, 0.85fr);
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   SALES LINE CHART
+   ========================================================= */
+
+.sales-line-chart {
+    position: relative;
+
+    min-height: 300px;
+
+    padding:
+        24px 24px 17px 50px;
+}
+
+
+.sales-svg {
+    width: 100%;
+    height: 230px;
+
+    overflow: visible;
+}
+
+
+.chart-grid-line {
+    stroke: #f0e6e9;
+
+    stroke-width: 1;
+}
+
+
+.sales-area {
+    fill:
+        url(#salesAreaGradient
+);
+
+    opacity: 0;
+}
+
+
+.reports-ready .sales-area {
+    animation:
+        fadeArea 0.8s ease 0.45s forwards;
+}
+
+
+.sales-line {
+    fill: none;
+
+    stroke: #d94b78;
+
+    stroke-width: 4;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+}
+
+
+.reports-ready .sales-line {
+    animation:
+        drawSalesLine 1.25s ease 0.25s forwards;
+}
+
+
+.sales-point {
+    fill: #ffffff;
+
+    stroke: #d94b78;
+
+    stroke-width: 4;
+
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+
+.reports-ready .sales-point {
+    animation:
+        pointPop 0.35s ease 1.05s forwards;
+}
+
+
+.chart-y-label {
+    position: absolute;
+
+    left: 17px;
+
+    color: #9b8e93;
+
+    font-size: 8px;
+}
+
+
+.chart-y-label.top {
+    top: 31px;
+}
+
+
+.chart-y-label.middle {
+    top: 112px;
+}
+
+
+.chart-y-label.bottom {
+    top: 196px;
+}
+
+
+.trend-label-row {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 5px;
+
+    margin:
+        -3px 13px 0;
+
+    color: #8c8084;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   PAYMENT
+   ========================================================= */
+
+.payment-layout {
+    padding:
+        24px 20px 22px;
+}
+
+
+.payment-donut {
+    position: relative;
+
+    width: 160px;
+    height: 160px;
+
+    margin:
+        4px auto 22px;
+
+    border-radius: 50%;
+
+    transform:
+        scale(0.75) rotate(-30deg);
+
+    opacity: 0;
+}
+
+
+.reports-ready .payment-donut {
+    animation:
+        donutIn 0.75s cubic-bezier(0.22,
+            1,
+            0.36,
+            1) 0.35s forwards;
+}
+
+
+.payment-donut::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 28px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 1px #f2e7eb;
+}
+
+
+.payment-donut-hole {
+    position: absolute;
+
+    z-index: 2;
+
+    inset: 37px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.payment-donut-hole strong {
+    color: #202733;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.payment-donut-hole span {
+    margin-top: 4px;
+
+    color: #978b90;
+
+    font-size: 7.5px;
+}
+
+
+.payment-legend {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.payment-legend-row {
+    display: grid;
+
+    grid-template-columns:
+        10px minmax(0, 1fr) 42px 65px;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 0;
+
+    border-bottom:
+        1px solid #f4ebee;
+
+    font-size: 8.5px;
+}
+
+
+.payment-legend-row:last-child {
+    border-bottom: 0;
+}
+
+
+.payment-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+}
+
+
+.payment-legend-row strong {
+    color: #4c4146;
+
+    font-weight: 500;
+}
+
+
+.payment-legend-row>span:nth-child(3) {
+    color: #73666b;
+
+    text-align: right;
+}
+
+
+.payment-legend-row b {
+    color: #30282c;
+
+    font-weight: 600;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   SECONDARY GRID
+   ========================================================= */
+
+.report-secondary-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.25fr) minmax(330px, 0.75fr);
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.report-table-wrap {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.report-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.report-table th {
+    padding:
+        12px 17px;
+
+    color: #8f7881;
+
+    background: #fff5f7;
+
+    font-size: 8.5px;
+    font-weight: 600;
+
+    text-align: left;
+
+    letter-spacing: 0.2px;
+}
+
+
+.report-table td {
+    padding:
+        12px 17px;
+
+    border-bottom:
+        1px solid #f3eaed;
+
+    color: #443a3f;
+
+    font-size: 9.5px;
+
+    vertical-align: middle;
+}
+
+
+.report-table tbody tr {
+    opacity: 0;
+
+    transform:
+        translateY(8px);
+}
+
+
+.reports-ready .report-table tbody tr {
+    animation:
+        tableRowIn 0.4s ease forwards;
+
+    animation-delay:
+        var(--row-delay,
+            0ms);
+}
+
+
+.report-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+.report-table tbody tr:hover {
+    background: #fffafb;
+}
+
+
+.rank-col {
+    width: 45px;
+}
+
+
+.product-rank {
+    color: #d84b78;
+
+    font-weight: 600;
+}
+
+
+.table-product {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.table-product-image {
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    overflow: hidden;
+
+    border: 1px solid #eee2e6;
+    border-radius: 8px;
+
+    background: #fff8fa;
+}
+
+
+.table-product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.table-product-image span {
+    color: #d84b78;
+
+    font-weight: 700;
+}
+
+
+.table-product strong {
+    display: block;
+
+    color: #282f3a;
+
+    font-size: 9.5px;
+    font-weight: 600;
+}
+
+
+.table-product>div:last-child span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #978b8f;
+
+    font-size: 7.5px;
+}
+
+
+.category-badge {
+    display: inline-block;
+
+    padding:
+        4px 8px;
+
+    border-radius: 14px;
+
+    color: #ba3f80;
+
+    background: #fbe9f2;
+
+    font-size: 7.5px;
+    font-weight: 600;
+}
+
+
+.money-cell {
+    color: #ce275f !important;
+
+    font-weight: 600;
+}
+
+
+.table-empty {
+    padding: 30px !important;
+
+    color: #978a8f !important;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   CATEGORY SALES
+   ========================================================= */
+
+.category-sales-list {
+    padding:
+        18px 20px 21px;
+}
+
+
+.category-sales-item {
+    margin-bottom: 19px;
+}
+
+
+.category-sales-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.category-sales-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 7px;
+}
+
+
+.category-sales-heading>strong {
+    color: #463b40;
+
+    font-size: 9.5px;
+    font-weight: 500;
+}
+
+
+.category-sales-heading>div {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.category-sales-heading span {
+    color: #6f6368;
+
+    font-size: 8.5px;
+}
+
+
+.category-sales-heading b {
+    min-width: 58px;
+
+    color: #30282c;
+
+    font-size: 8.5px;
+    font-weight: 600;
+
+    text-align: right;
+}
+
+
+.category-progress {
+    height: 7px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #f1e8eb;
+}
+
+
+.category-progress-fill {
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        var(--category-color,
+            #d94b78);
+
+    transition:
+        width 1s cubic-bezier(0.22,
+            1,
+            0.36,
+            1);
+}
+
+
+.category-sales-item small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #9a8e92;
+
+    font-size: 7.5px;
+}
+
+
+/* =========================================================
+   TRANSACTIONS
+   ========================================================= */
+
+.transactions-panel {
+    margin-bottom: 10px;
+}
+
+
+.transaction-table {
+    min-width: 980px;
+}
+
+
+.order-number {
+    color: #30292d;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+.table-subtext {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #978b8f;
+
+    font-size: 7.5px;
+}
+
+
+.payment-badge {
+    display: inline-block;
+
+    padding:
+        4px 7px;
+
+    border-radius: 12px;
+
+    color: #b43d7f;
+
+    background: #fbe9f2;
+
+    font-size: 7.5px;
+    font-weight: 600;
+}
+
+
+.transaction-status {
+    display: inline-block;
+
+    padding:
+        4px 8px;
+
+    border-radius: 14px;
+
+    font-size: 7.5px;
+    font-weight: 600;
+}
+
+
+.transaction-status.processing {
+    color: #c47d18;
+
+    background: #fff4df;
+}
+
+
+.transaction-status.delivered {
+    color: #2c8d59;
+
+    background: #e9f8ef;
+}
+
+
+.transaction-status.cancelled {
+    color: #c64a61;
+
+    background: #ffedf1;
+}
+
+
+.transaction-view {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 50px;
+    height: 27px;
+
+    border: 1px solid #ecd8df;
+    border-radius: 7px;
+
+    color: #d44976;
+
+    background: #fff8fa;
+
+    font-size: 7.5px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.transaction-view:hover {
+    color: #ffffff;
+
+    background: #d94b78;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.report-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 260px;
+
+    color: #978b8f;
+}
+
+
+.report-empty-state strong {
+    color: #55494e;
+
+    font-size: 12px;
+}
+
+
+.report-empty-state span {
+    margin-top: 5px;
+
+    font-size: 9px;
+}
+
+
+.report-empty-inline {
+    padding: 20px;
+
+    color: #978b8f;
+
+    font-size: 9px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes reportCardIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+
+}
+
+
+@keyframes reportPanelIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes drawSalesLine {
+
+    to {
+        stroke-dashoffset: 0;
+    }
+
+}
+
+
+@keyframes fadeArea {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes pointPop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.3);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+@keyframes donutIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.75) rotate(-30deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1) rotate(0deg);
+    }
+
+}
+
+
+@keyframes tableRowIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1450px) {
+
+    .report-kpi-grid {
+        grid-template-columns:
+            repeat(2,
+                minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 1180px) {
+
+    .report-topbar {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+
+    .report-topbar-actions {
+        width: 100%;
+
+        flex-wrap: wrap;
+    }
+
+
+    .report-main-grid,
+    .report-secondary-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 720px) {
+
+    .report-kpi-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .report-topbar-actions {
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        width: 100%;
+    }
+
+
+    .range-select-wrapper {
+        width: 100%;
+    }
+
+
+    .report-date-pill {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+
+}

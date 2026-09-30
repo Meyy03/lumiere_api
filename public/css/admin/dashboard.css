@@ -1,0 +1,2636 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #faf8f9;
+    color: #29252a;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   ADMIN LAYOUT
+   ========================================================= */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    width: 255px;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(180deg,
+            #df648c 0%,
+            #d8537d 100%);
+
+    color: #ffffff;
+
+    padding: 25px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    z-index: 100;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   SIDEBAR BRAND
+   ========================================================= */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 9px;
+}
+
+
+/* =========================================================
+   SIDEBAR REAL LOGO
+   ========================================================= */
+
+.sidebar-logo {
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 5px 15px rgba(92, 26, 50, 0.12);
+}
+
+.sidebar-logo-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    padding: 3px;
+
+    border-radius: 50%;
+}
+
+.sidebar-brand h2 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 3px;
+
+    color: #ffffff;
+}
+
+.sidebar-brand p {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    opacity: 0.85;
+
+    color: #ffffff;
+}
+
+.sidebar-divider {
+    height: 1px;
+
+    background:
+        rgba(255, 255, 255, 0.28);
+
+    margin: 23px 9px;
+}
+
+
+/* =========================================================
+   SIDEBAR MENU
+   ========================================================= */
+
+.sidebar-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.menu-item {
+    min-height: 47px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 0 15px;
+
+    border-radius: 9px;
+
+    color: rgba(255, 255, 255, 0.92);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.menu-item:hover {
+    background:
+        rgba(155, 38, 75, 0.18);
+}
+
+.menu-item.active {
+    background:
+        rgba(166, 39, 79, 0.30);
+
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+.menu-icon {
+    width: 19px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+   ========================================================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+/* =========================================================
+   ADMIN PROFILE
+   ========================================================= */
+
+.admin-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 8px 17px;
+}
+
+
+/* =========================================================
+   ADMIN PROFILE REAL LOGO
+   ========================================================= */
+
+.admin-avatar {
+    width: 39px;
+    height: 39px;
+
+    min-width: 39px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 12px rgba(92, 26, 50, 0.10);
+}
+
+.admin-avatar-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    padding: 2px;
+
+    border-radius: 50%;
+}
+
+.admin-profile-info {
+    min-width: 0;
+}
+
+.admin-profile-info strong {
+    display: block;
+
+    font-size: 12px;
+
+    color: #ffffff;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.admin-profile-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.80);
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+.logout-button {
+    width: 100%;
+
+    height: 43px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 15px;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.logout-button:hover {
+    background:
+        rgba(157, 32, 72, 0.22);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main-content {
+    width:
+        calc(100% - 255px);
+
+    margin-left: 255px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    min-height: 92px;
+
+    padding: 21px 34px;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid #eee7ea;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 50;
+}
+
+.topbar h1 {
+    font-size: 23px;
+
+    font-weight: 700;
+
+    color: #29242a;
+
+    margin-bottom: 5px;
+}
+
+.topbar p {
+    font-size: 12px;
+
+    color: #999197;
+}
+
+.topbar-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.date-box {
+    padding: 10px 15px;
+
+    background: #fff4f7;
+
+    color: #a54262;
+
+    border:
+        1px solid #f3dce3;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.dashboard-content {
+    padding: 30px 34px;
+}
+
+
+/* =========================================================
+   WELCOME CARD
+   ========================================================= */
+
+.welcome-card {
+    min-height: 180px;
+
+    border-radius: 16px;
+
+    padding: 34px;
+
+    background:
+        linear-gradient(125deg,
+            #fff0f4,
+            #f9d2dd);
+
+    border:
+        1px solid #f2d8df;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.welcome-label {
+    color: #c34a72;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.welcome-card h2 {
+    max-width: 560px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 29px;
+
+    color: #4a2936;
+
+    margin-bottom: 12px;
+}
+
+.welcome-card>div:first-child>p:last-child {
+    max-width: 590px;
+
+    font-size: 13px;
+
+    color: #7f616b;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   DASHBOARD WELCOME REAL LOGO
+   Replaces the old big "L"
+   ========================================================= */
+
+.welcome-symbol {
+    width: 115px;
+    height: 115px;
+
+    min-width: 115px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        rgba(255, 255, 255, 0.50);
+
+    border:
+        1px solid rgba(173, 75, 107, 0.16);
+
+    margin-right: 25px;
+
+    box-shadow:
+        0 8px 25px rgba(140, 55, 87, 0.08);
+}
+
+.welcome-logo-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    padding: 9px;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-top: 22px;
+}
+
+.stat-card {
+    min-height: 158px;
+
+    padding: 21px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #eee5e8;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 4px 18px rgba(70, 45, 55, 0.035);
+}
+
+.stat-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 19px;
+}
+
+.stat-title {
+    color: #736c71;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.stat-icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fae4eb;
+
+    color: #ce4c76;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.stat-card h3 {
+    font-size: 27px;
+
+    color: #282328;
+
+    margin-bottom: 8px;
+}
+
+.stat-card p {
+    color: #aaa3a7;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOWER GRID
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+
+    margin-top: 22px;
+}
+
+.content-card {
+    background: #ffffff;
+
+    border:
+        1px solid #eee5e8;
+
+    border-radius: 13px;
+
+    padding: 23px;
+
+    box-shadow:
+        0 4px 18px rgba(70, 45, 55, 0.03);
+}
+
+.card-header {
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid #f1ebed;
+
+    margin-bottom: 5px;
+}
+
+.card-header h3 {
+    font-size: 16px;
+
+    color: #302a2e;
+
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    color: #a49da1;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   ACCOUNT
+   ========================================================= */
+
+.account-info {
+    padding-top: 5px;
+}
+
+.info-row {
+    min-height: 53px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom:
+        1px solid #f4eff1;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    color: #8e878b;
+
+    font-size: 12px;
+}
+
+.info-row strong {
+    color: #3a3337;
+
+    font-size: 12px;
+
+    text-align: right;
+}
+
+.role-badge {
+    padding: 6px 10px;
+
+    border-radius: 30px;
+
+    background: #fbe2ea;
+
+    color: #b63f67 !important;
+
+    font-size: 10px !important;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-list {
+    padding-top: 5px;
+}
+
+.status-row {
+    min-height: 53px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom:
+        1px solid #f4eff1;
+
+    font-size: 12px;
+
+    color: #777075;
+}
+
+.status-row:last-child {
+    border-bottom: none;
+}
+
+.status-row>div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.status-row strong {
+    color: #35925a;
+
+    font-size: 10px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #43aa68;
+
+    box-shadow:
+        0 0 0 4px rgba(67, 170, 104, 0.10);
+}
+
+
+/* =========================================================
+   COMMON BUTTONS
+   ========================================================= */
+
+.primary-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #d94e7b;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(199, 62, 107, 0.16);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.primary-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 22px rgba(199, 62, 107, 0.22);
+}
+
+.secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border:
+        1px solid #ecd9df;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #654d56;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.secondary-button:hover {
+    background: #fff7f9;
+
+    border-color: #e5bdca;
+}
+
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.alert {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px 18px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+}
+
+.alert-success {
+    background: #eefaf2;
+
+    border:
+        1px solid #ccead5;
+
+    color: #257548;
+}
+
+.alert-error {
+    background: #fff1f4;
+
+    border:
+        1px solid #f1cbd5;
+
+    color: #ad3458;
+}
+
+
+/* =========================================================
+   TABLE COMMON STYLES
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+.admin-table th {
+    padding: 14px 12px;
+
+    background: #fff7f9;
+
+    color: #725e66;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid #eee2e6;
+}
+
+.admin-table td {
+    padding: 14px 12px;
+
+    border-bottom:
+        1px solid #f2e9ec;
+
+    color: #40383d;
+
+    font-size: 11px;
+
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   FORM COMMON STYLES
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #40373c;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 10px 13px;
+
+    border:
+        1px solid #eadde1;
+
+    border-radius: 8px;
+
+    background: #fffafb;
+
+    color: #393236;
+
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #dc668b;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(220, 102, 139, 0.09);
+}
+
+textarea.form-control {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.field-error {
+    margin-top: 6px;
+
+    color: #c33e64;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    padding: 45px 25px;
+
+    text-align: center;
+
+    color: #958b90;
+}
+
+.empty-state h3 {
+    margin-bottom: 8px;
+
+    color: #5e5057;
+
+    font-size: 16px;
+}
+
+.empty-state p {
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 10px;
+
+    border-radius: 30px;
+
+    font-size: 9px;
+
+    font-weight: 600;
+}
+
+.badge-success {
+    background: #e9f7ed;
+
+    color: #328654;
+}
+
+.badge-warning {
+    background: #fff4dd;
+
+    color: #a86c12;
+}
+
+.badge-danger {
+    background: #fdecef;
+
+    color: #c24767;
+}
+
+.badge-neutral {
+    background: #f3eff1;
+
+    color: #75696f;
+}
+
+
+/* =========================================================
+   DASHBOARD FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    text-align: center;
+
+    margin-top: 30px;
+
+    padding: 15px;
+
+    color: #aaa4a8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background:
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        width:
+            calc(100% - 210px);
+
+        margin-left: 210px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-brand h2 {
+        font-size: 16px;
+    }
+
+    .sidebar-brand p {
+        font-size: 8px;
+    }
+
+    .welcome-symbol {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .topbar {
+        padding: 18px 20px;
+    }
+
+    .dashboard-content {
+        padding: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-card {
+        padding: 25px;
+    }
+
+    .welcome-card h2 {
+        font-size: 24px;
+    }
+
+    .date-box {
+        display: none;
+    }
+}
+
+/* =========================================================
+   LUMIÈRE ADMIN CONFIRM MODAL
+   ========================================================= */
+
+.admin-confirm-overlay[hidden] {
+    display: none !important;
+}
+
+.admin-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(38, 28, 33, 0.42);
+    backdrop-filter: blur(4px);
+}
+
+.admin-confirm-modal {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 34px 32px 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #f0dce3;
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 24px 65px rgba(100, 48, 67, 0.20);
+
+    animation:
+        adminModalShow 0.20s ease;
+}
+
+@keyframes adminModalShow {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+.admin-confirm-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fde4eb;
+
+    color: #d94f79;
+
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.admin-confirm-modal h3 {
+    margin: 0 0 10px;
+
+    color: #292329;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.admin-confirm-modal p {
+    max-width: 340px;
+
+    margin: 0 auto 27px;
+
+    color: #84777c;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.admin-confirm-actions {
+    display: flex;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.admin-confirm-actions button {
+    min-width: 135px;
+    height: 46px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+.admin-confirm-cancel {
+    border: 1px solid #ead9df;
+
+    background: #ffffff;
+
+    color: #685b60;
+}
+
+.admin-confirm-cancel:hover {
+    background: #fff7f9;
+}
+
+.admin-confirm-submit {
+    border: none;
+
+    background: #d94f79;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(217, 79, 121, 0.20);
+}
+
+.admin-confirm-submit:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 11px 24px rgba(217, 79, 121, 0.27);
+}
+
+
+/* =========================================================
+   DELETE VERSION
+   ========================================================= */
+
+.admin-confirm-delete .admin-confirm-icon {
+    background: #fff0f2;
+
+    color: #d63c5d;
+}
+
+.admin-confirm-delete .admin-confirm-submit {
+    background: #d63c5d;
+}
+
+
+/* =========================================================
+   PREVENT PAGE SCROLL
+   ========================================================= */
+
+body.admin-modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .admin-confirm-modal {
+        padding: 28px 20px 22px;
+    }
+
+    .admin-confirm-actions {
+        flex-direction: column-reverse;
+    }
+
+    .admin-confirm-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   LUMIÈRE ADMIN
+   PREMIUM MOTION SYSTEM
+   ========================================================= */
+
+
+/* =========================================================
+   MOTION VARIABLES
+   ========================================================= */
+
+:root {
+    --motion-fast: 160ms;
+    --motion-normal: 260ms;
+    --motion-slow: 480ms;
+
+    --motion-ease:
+        cubic-bezier(0.22,
+            1,
+            0.36,
+            1);
+
+    --motion-soft:
+        cubic-bezier(0.16,
+            1,
+            0.3,
+            1);
+}
+
+
+/* =========================================================
+   1. PAGE ENTRANCE
+   =========================================================
+   The content enters smoothly without making the entire
+   dashboard fly around.
+   ========================================================= */
+
+.main-content {
+    animation:
+        lumierePageReveal 520ms var(--motion-soft) both;
+}
+
+@keyframes lumierePageReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   2. SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    animation:
+        lumiereSidebarReveal 460ms var(--motion-soft) both;
+}
+
+@keyframes lumiereSidebarReveal {
+
+    from {
+        opacity: 0.92;
+
+        transform:
+            translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+/* =========================================================
+   3. SIDEBAR BRAND
+   ========================================================= */
+
+.sidebar-brand {
+    animation:
+        lumiereBrandReveal 560ms var(--motion-soft) both;
+
+    animation-delay: 70ms;
+}
+
+@keyframes lumiereBrandReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   4. SIDEBAR MENU STAGGER
+   ========================================================= */
+
+.sidebar-menu .menu-item {
+    position: relative;
+
+    animation:
+        lumiereMenuReveal 430ms var(--motion-soft) both;
+
+    transition:
+        transform var(--motion-normal) var(--motion-ease),
+
+        background-color var(--motion-normal) ease,
+
+        color var(--motion-normal) ease,
+
+        box-shadow var(--motion-normal) ease;
+}
+
+
+.sidebar-menu .menu-item:nth-child(1) {
+    animation-delay: 80ms;
+}
+
+.sidebar-menu .menu-item:nth-child(2) {
+    animation-delay: 115ms;
+}
+
+.sidebar-menu .menu-item:nth-child(3) {
+    animation-delay: 150ms;
+}
+
+.sidebar-menu .menu-item:nth-child(4) {
+    animation-delay: 185ms;
+}
+
+.sidebar-menu .menu-item:nth-child(5) {
+    animation-delay: 220ms;
+}
+
+.sidebar-menu .menu-item:nth-child(6) {
+    animation-delay: 255ms;
+}
+
+
+@keyframes lumiereMenuReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+/* SIDEBAR HOVER */
+
+.sidebar-menu .menu-item:hover {
+    transform:
+        translateX(5px);
+}
+
+
+/* ACTIVE MENU */
+
+.sidebar-menu .menu-item.active {
+    box-shadow:
+        inset 3px 0 0 rgba(255, 255, 255, 0.72);
+}
+
+.sidebar-menu .menu-item.active:hover {
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   5. SIDEBAR ICON MOTION
+   ========================================================= */
+
+.menu-icon {
+    transition:
+        transform 260ms var(--motion-ease);
+}
+
+.menu-item:hover .menu-icon {
+    transform:
+        scale(1.12);
+}
+
+
+/* =========================================================
+   6. TOPBAR REVEAL
+   ========================================================= */
+
+.topbar {
+    animation:
+        lumiereTopbarReveal 520ms var(--motion-soft) both;
+
+    animation-delay: 70ms;
+}
+
+@keyframes lumiereTopbarReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   7. MAIN DASHBOARD CONTENT
+   ========================================================= */
+
+.dashboard-content {
+    animation:
+        lumiereContentReveal 620ms var(--motion-soft) both;
+
+    animation-delay: 100ms;
+}
+
+@keyframes lumiereContentReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   8. HERO CARD
+   ========================================================= */
+
+.hero-card {
+    animation:
+        lumiereHeroReveal 700ms var(--motion-soft) both;
+
+    animation-delay: 140ms;
+
+    transition:
+        transform 340ms var(--motion-ease),
+
+        box-shadow 340ms ease;
+}
+
+@keyframes lumiereHeroReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* Very gentle hero movement */
+
+.hero-card:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 38px rgba(121, 67, 85, 0.08);
+}
+
+
+/* =========================================================
+   9. HERO LOGO
+   ========================================================= */
+
+.hero-logo-circle {
+    transition:
+        transform 420ms var(--motion-ease),
+
+        box-shadow 420ms ease;
+}
+
+.hero-card:hover .hero-logo-circle {
+    transform:
+        scale(1.045) rotate(1deg);
+}
+
+
+/* =========================================================
+   10. DASHBOARD STAT CARDS
+   ========================================================= */
+
+.stats-grid .stat-card {
+    animation:
+        lumiereCardReveal 560ms var(--motion-soft) both;
+
+    transition:
+        transform 260ms var(--motion-ease),
+
+        box-shadow 260ms ease,
+
+        border-color 260ms ease;
+}
+
+
+.stats-grid .stat-card:nth-child(1) {
+    animation-delay: 170ms;
+}
+
+.stats-grid .stat-card:nth-child(2) {
+    animation-delay: 220ms;
+}
+
+.stats-grid .stat-card:nth-child(3) {
+    animation-delay: 270ms;
+}
+
+.stats-grid .stat-card:nth-child(4) {
+    animation-delay: 320ms;
+}
+
+
+@keyframes lumiereCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(16px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+.stats-grid .stat-card:hover {
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 32px rgba(109, 61, 78, 0.09);
+}
+
+
+/* STAT ICON */
+
+.stat-icon {
+    transition:
+        transform 300ms var(--motion-ease);
+}
+
+.stat-card:hover .stat-icon {
+    transform:
+        scale(1.08) rotate(-3deg);
+}
+
+
+/* =========================================================
+   11. INFORMATION CARDS
+   ========================================================= */
+
+.dashboard-info-grid .info-card {
+    animation:
+        lumiereInfoCardReveal 600ms var(--motion-soft) both;
+
+    transition:
+        transform 280ms var(--motion-ease),
+
+        box-shadow 280ms ease;
+}
+
+
+.dashboard-info-grid .info-card:nth-child(1) {
+    animation-delay: 280ms;
+}
+
+.dashboard-info-grid .info-card:nth-child(2) {
+    animation-delay: 340ms;
+}
+
+
+@keyframes lumiereInfoCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.dashboard-info-grid .info-card:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(101, 58, 73, 0.07);
+}
+
+
+/* =========================================================
+   12. PRODUCT / CATEGORY TOOLBARS
+   ========================================================= */
+
+.product-toolbar,
+.category-toolbar {
+    animation:
+        lumiereToolbarReveal 540ms var(--motion-soft) both;
+
+    animation-delay: 150ms;
+}
+
+@keyframes lumiereToolbarReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   13. MAIN TABLE CARDS
+   ========================================================= */
+
+.product-table-card,
+.category-table-card {
+    animation:
+        lumiereTableCardReveal 620ms var(--motion-soft) both;
+
+    animation-delay: 190ms;
+}
+
+@keyframes lumiereTableCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   14. TABLE ROW REVEAL
+   ========================================================= */
+
+.product-table tbody tr,
+.category-table tbody tr {
+    animation:
+        lumiereRowReveal 460ms var(--motion-soft) both;
+
+    transition:
+        background-color 180ms ease;
+}
+
+
+.product-table tbody tr:nth-child(1),
+.category-table tbody tr:nth-child(1) {
+    animation-delay: 220ms;
+}
+
+.product-table tbody tr:nth-child(2),
+.category-table tbody tr:nth-child(2) {
+    animation-delay: 255ms;
+}
+
+.product-table tbody tr:nth-child(3),
+.category-table tbody tr:nth-child(3) {
+    animation-delay: 290ms;
+}
+
+.product-table tbody tr:nth-child(4),
+.category-table tbody tr:nth-child(4) {
+    animation-delay: 325ms;
+}
+
+.product-table tbody tr:nth-child(5),
+.category-table tbody tr:nth-child(5) {
+    animation-delay: 360ms;
+}
+
+.product-table tbody tr:nth-child(6),
+.category-table tbody tr:nth-child(6) {
+    animation-delay: 395ms;
+}
+
+.product-table tbody tr:nth-child(7),
+.category-table tbody tr:nth-child(7) {
+    animation-delay: 430ms;
+}
+
+.product-table tbody tr:nth-child(8),
+.category-table tbody tr:nth-child(8) {
+    animation-delay: 465ms;
+}
+
+
+@keyframes lumiereRowReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(9px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   15. PRODUCT / CATEGORY IMAGE
+   ========================================================= */
+
+.product-initial,
+.category-initial {
+    overflow: hidden;
+}
+
+
+.product-initial img,
+.category-initial img {
+    transition:
+        transform 340ms var(--motion-ease);
+}
+
+
+.product-name-cell:hover .product-initial img,
+.category-name-cell:hover .category-initial img {
+    transform:
+        scale(1.09);
+}
+
+
+/* =========================================================
+   16. PRODUCT / CATEGORY NAME
+   ========================================================= */
+
+.product-name-cell,
+.category-name-cell {
+    transition:
+        transform 240ms var(--motion-ease);
+}
+
+
+.product-name-cell:hover,
+.category-name-cell:hover {
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   17. CREATE / EDIT FORM CARDS
+   ========================================================= */
+
+.product-form-card,
+.category-form-card {
+    animation:
+        lumiereFormReveal 620ms var(--motion-soft) both;
+
+    animation-delay: 150ms;
+}
+
+
+@keyframes lumiereFormReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px) scale(0.992);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   18. CATEGORY STAT CARDS
+   ========================================================= */
+
+.category-stat-card {
+    animation:
+        lumiereCardReveal 540ms var(--motion-soft) both;
+
+    transition:
+        transform 260ms var(--motion-ease),
+
+        box-shadow 260ms ease;
+}
+
+
+.category-stat-card:nth-child(1) {
+    animation-delay: 150ms;
+}
+
+.category-stat-card:nth-child(2) {
+    animation-delay: 200ms;
+}
+
+
+.category-stat-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(100, 54, 73, 0.08);
+}
+
+
+/* =========================================================
+   19. CATEGORY SAFETY CARD
+   ========================================================= */
+
+.category-safety-card {
+    animation:
+        lumiereSafetyReveal 600ms var(--motion-soft) both;
+
+    animation-delay: 260ms;
+}
+
+@keyframes lumiereSafetyReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   20. FORM INPUT FOCUS
+   =========================================================
+   No movement here — only elegant focus lighting.
+   ========================================================= */
+
+input,
+select,
+textarea {
+    transition:
+        border-color 220ms ease,
+
+        box-shadow 220ms ease,
+
+        background-color 220ms ease;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+    box-shadow:
+        0 0 0 4px rgba(218, 78, 120, 0.08);
+}
+
+
+/* =========================================================
+   21. MAIN BUTTON EFFECT
+   ========================================================= */
+
+.primary-button,
+.save-category-button,
+.filter-button {
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 220ms var(--motion-ease),
+
+        box-shadow 220ms ease;
+}
+
+
+.primary-button:hover,
+.save-category-button:hover,
+.filter-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 23px rgba(214, 75, 116, 0.22);
+}
+
+
+.primary-button:active,
+.save-category-button:active,
+.filter-button:active {
+    transform:
+        translateY(0) scale(0.98);
+}
+
+
+/* =========================================================
+   22. BUTTON LIGHT SWEEP
+   ========================================================= */
+
+.primary-button::after,
+.save-category-button::after,
+.filter-button::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -80%;
+
+    width: 55%;
+    height: 100%;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(100deg,
+            transparent,
+            rgba(255, 255, 255, 0.24),
+            transparent);
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 520ms ease;
+}
+
+
+.primary-button:hover::after,
+.save-category-button:hover::after,
+.filter-button:hover::after {
+    left: 130%;
+}
+
+
+/* =========================================================
+   23. SECONDARY BUTTONS
+   ========================================================= */
+
+.secondary-button,
+.clear-button,
+.cancel-button {
+    transition:
+        transform 220ms var(--motion-ease),
+
+        border-color 220ms ease,
+
+        background-color 220ms ease;
+}
+
+
+.secondary-button:hover,
+.clear-button:hover,
+.cancel-button:hover {
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   24. TABLE ACTION BUTTONS
+   ========================================================= */
+
+.action-button {
+    transition:
+        transform 180ms var(--motion-ease),
+
+        box-shadow 180ms ease,
+
+        background-color 180ms ease;
+}
+
+
+.action-button:not(:disabled):hover {
+    transform:
+        translateY(-2px);
+}
+
+
+.action-button:not(:disabled):active {
+    transform:
+        translateY(0) scale(0.96);
+}
+
+
+/* =========================================================
+   25. BADGES
+   ========================================================= */
+
+.status-badge,
+.stock-badge,
+.product-count,
+.slug-badge {
+    transition:
+        transform 200ms var(--motion-ease);
+}
+
+
+.status-badge:hover,
+.stock-badge:hover,
+.product-count:hover,
+.slug-badge:hover {
+    transform:
+        scale(1.045);
+}
+
+
+/* =========================================================
+   26. ALERT MESSAGES
+   ========================================================= */
+
+.product-alert,
+.category-alert {
+    animation:
+        lumiereAlertReveal 520ms var(--motion-soft) both;
+}
+
+
+@keyframes lumiereAlertReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-10px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   27. ADMIN PROFILE
+   ========================================================= */
+
+.admin-profile {
+    animation:
+        lumiereProfileReveal 520ms var(--motion-soft) both;
+
+    animation-delay: 300ms;
+}
+
+
+@keyframes lumiereProfileReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   28. ADMIN AVATAR / LOGO
+   ========================================================= */
+
+.admin-avatar img,
+.sidebar-logo img {
+    transition:
+        transform 340ms var(--motion-ease);
+}
+
+
+.admin-profile:hover .admin-avatar img {
+    transform:
+        scale(1.06);
+}
+
+
+/* =========================================================
+   29. LOGOUT BUTTON
+   ========================================================= */
+
+.logout-button {
+    transition:
+        transform 220ms var(--motion-ease),
+
+        opacity 220ms ease;
+}
+
+
+.logout-button:hover {
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================================================
+   30. CONFIRM MODAL
+   ========================================================= */
+
+.lumiere-modal-overlay:not([hidden]) {
+    animation:
+        lumiereModalOverlayReveal 220ms ease both;
+}
+
+
+@keyframes lumiereModalOverlayReveal {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.lumiere-modal-overlay:not([hidden]) .lumiere-modal {
+    animation:
+        lumierePremiumModalReveal 360ms var(--motion-soft) both;
+}
+
+
+@keyframes lumierePremiumModalReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   31. STATUS DOT
+   ========================================================= */
+
+.status-dot.active {
+    animation:
+        lumiereStatusPulse 2.4s ease-in-out infinite;
+}
+
+
+@keyframes lumiereStatusPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(74, 181, 116, 0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 5px rgba(74, 181, 116, 0.10);
+    }
+}
+
+
+/* =========================================================
+   32. PAGINATION
+   ========================================================= */
+
+.pagination-button,
+.page-button {
+    transition:
+        transform 200ms var(--motion-ease),
+
+        background-color 200ms ease,
+
+        border-color 200ms ease;
+}
+
+
+.pagination-button:not(.disabled):hover,
+.page-button:not(.disabled):hover {
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   33. IMAGE PREVIEW
+   ========================================================= */
+
+.image-preview,
+.category-image-preview,
+.product-image-preview {
+    transition:
+        transform 320ms var(--motion-ease),
+
+        box-shadow 320ms ease;
+}
+
+
+.image-preview:hover,
+.category-image-preview:hover,
+.product-image-preview:hover {
+    transform:
+        scale(1.025);
+}
+
+
+/* =========================================================
+   34. DESKTOP ONLY ENHANCEMENTS
+   ========================================================= */
+
+@media (min-width: 769px) {
+
+    .product-table tbody tr:hover,
+    .category-table tbody tr:hover {
+        background:
+            rgba(255, 246, 249, 0.72);
+    }
+
+}
+
+
+/* =========================================================
+   35. MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .main-content,
+    .dashboard-content,
+    .topbar,
+    .sidebar {
+        animation-duration:
+            360ms;
+    }
+
+
+    .stats-grid .stat-card:hover,
+    .category-stat-card:hover,
+    .dashboard-info-grid .info-card:hover,
+    .hero-card:hover {
+        transform: none;
+    }
+
+}
+
+
+/* =========================================================
+   36. ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-delay:
+            0ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+
+}
