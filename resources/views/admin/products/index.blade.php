@@ -48,22 +48,18 @@
             <section class="dashboard-content">
 
                 {{-- SUCCESS MESSAGE --}}
-                @if(session('success'))
-
+                @if (session('success'))
                     <div class="product-alert success">
                         {{ session('success') }}
                     </div>
-
                 @endif
 
 
                 {{-- ERROR MESSAGE --}}
-                @if(session('error'))
-
+                @if (session('error'))
                     <div class="product-alert error">
                         {{ session('error') }}
                     </div>
-
                 @endif
 
 
@@ -90,17 +86,11 @@
                                     All Categories
                                 </option>
 
-                                @foreach($categories as $category)
-
-                                                            <option value="{{ $category->id }}" {{
-                                    (string) $categoryId ===
-                                    (string) $category->id
-                                    ? 'selected'
-                                    : ''
-                                                                }}>
-                                                                {{ $category->name }}
-                                                            </option>
-
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ (string) $categoryId === (string) $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
                                 @endforeach
 
                             </select>
@@ -117,27 +107,15 @@
                                     All Audiences
                                 </option>
 
-                                <option value="female" {{
-    ($audience ?? '') === 'female'
-    ? 'selected'
-    : ''
-                                }}>
+                                <option value="female" {{ ($audience ?? '') === 'female' ? 'selected' : '' }}>
                                     Women
                                 </option>
 
-                                <option value="male" {{
-    ($audience ?? '') === 'male'
-    ? 'selected'
-    : ''
-                                }}>
+                                <option value="male" {{ ($audience ?? '') === 'male' ? 'selected' : '' }}>
                                     Men
                                 </option>
 
-                                <option value="all" {{
-    ($audience ?? '') === 'all'
-    ? 'selected'
-    : ''
-                                }}>
+                                <option value="all" {{ ($audience ?? '') === 'all' ? 'selected' : '' }}>
                                     All / Unisex
                                 </option>
 
@@ -172,11 +150,7 @@
                             </h2>
 
                             <p>
-                                {{
-    number_format(
-        $products->total()
-    )
-                            }}
+                                {{ number_format($products->total()) }}
                                 product(s) found
                             </p>
 
@@ -236,155 +210,144 @@
 
                             <tbody>
 
-                                @forelse(
-                                                                    $products as $product
-                                                                )
+                                @forelse($products as $product)
+                                    <tr>
 
-                                                                <tr>
+                                        {{-- ID --}}
+                                        <td class="product-id">
 
-                                                                    {{-- ID --}}
-                                                                    <td class="product-id">
+                                            #{{ $product->id }}
 
-                                                                        #{{ $product->id }}
-
-                                                                    </td>
+                                        </td>
 
 
-                                                                    {{-- PRODUCT --}}
-                                                                    <td>
+                                        {{-- PRODUCT --}}
+                                        <td>
 
-                                                                        <div class="product-name-cell">
+                                            <div class="product-name-cell">
 
-                                                                            <div class="product-initial" style="
-                                                                                overflow: hidden;
-                                                                                padding: 0;
-                                                                            ">
+                                                <div class="product-initial"
+                                                    style="
+        overflow: hidden;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    ">
+                                                    @php
+                                                        $productImagePath = trim($product->image ?? '');
+                                                        $productImageUrl = null;
 
-                                                                                @if(
-                                                                                            !empty(
-                                                                                            $product->image
-                                                                                        )
-                                                                                    )
+                                                        if ($productImagePath !== '') {
+                                                            /*
+            |--------------------------------------------------------------------------
+            | FULL URL
+            |--------------------------------------------------------------------------
+            | Example:
+            | http://127.0.0.1:8000/storage/products/abc.png
+            */
+                                                            if (
+                                                                str_starts_with($productImagePath, 'http://') ||
+                                                                str_starts_with($productImagePath, 'https://')
+                                                            ) {
+                                                                $productImageUrl = $productImagePath;
+                                                            }
+                                                            /*
+            |--------------------------------------------------------------------------
+            | SEEDED / PUBLIC ASSET IMAGE
+            |--------------------------------------------------------------------------
+            | Example:
+            | assets/images/cleanser/cleanser_1.png
+            */ elseif (
+                                                                str_starts_with($productImagePath, 'assets/')
+                                                            ) {
+                                                                $productImageUrl = asset($productImagePath);
+                                                            }
+                                                            /*
+            |--------------------------------------------------------------------------
+            | STORAGE IMAGE
+            |--------------------------------------------------------------------------
+            | Example:
+            | storage/products/abc.png
+            */ elseif (
+                                                                str_starts_with($productImagePath, 'storage/')
+                                                            ) {
+                                                                $productImageUrl = asset($productImagePath);
+                                                            }
+                                                            /*
+            |--------------------------------------------------------------------------
+            | ADMIN-UPLOADED PRODUCT IMAGE
+            |--------------------------------------------------------------------------
+            | Example:
+            | products/abc.png
+            */ elseif (
+                                                                str_starts_with($productImagePath, 'products/')
+                                                            ) {
+                                                                $productImageUrl = route('product.image', [
+                                                                    'filename' => basename($productImagePath),
+                                                                ]);
+                                                            }
+                                                            /*
+            |--------------------------------------------------------------------------
+            | FALLBACK PATH
+            |--------------------------------------------------------------------------
+            */ else {
+                                                                $productImageUrl = asset($productImagePath);
+                                                            }
+                                                        }
+                                                    @endphp
 
-                                                                                    @php
-
-                                                                                        $productImagePath =
-                                                                                            trim(
-                                                                                                $product->image
-                                                                                            );
-
-                                                                                        $isUploadedProductImage =
-                                                                                            str_starts_with(
-                                                                                                $productImagePath,
-                                                                                                'products/'
-                                                                                            );
-
-                                                                                    @endphp
-
-
-                                                                                    @if(
-                                                                                                                                $isUploadedProductImage
-                                                                                                                            )
-
-                                                                                                                            <img src="{{ route(
-                                                                                            'product.image',
-                                                                                            [
-                                                                                                'filename' =>
-                                                                                                    basename(
-                                                                                                        $productImagePath
-                                                                                                    )
-                                                                                            ]
-                                                                                        ) }}" alt="{{ $product->name }}" style="
-                                                                                                                                        width: 100%;
-                                                                                                                                        height: 100%;
-                                                                                                                                        display: block;
-                                                                                                                                        object-fit: cover;
-                                                                                                                                    ">
-
-                                                                                    @else
-
-                                                                                                                        <span>
-
-                                                                                                                            {{
-                                                                                        strtoupper(
-                                                                                            substr(
-                                                                                                $product->name,
-                                                                                                0,
-                                                                                                1
-                                                                                            )
-                                                                                        )
-                                                                                                                                }}
-
-                                                                                                                        </span>
-
-                                                                                    @endif
-
-                                                                                @else
-
-                                                                                                                        <span>
-
-                                                                                                                            {{
-                                                                                    strtoupper(
-                                                                                        substr(
-                                                                                            $product->name,
-                                                                                            0,
-                                                                                            1
-                                                                                        )
-                                                                                    )
-                                                                                                                            }}
-
-                                                                                                                        </span>
-
-                                                                                @endif
-
-                                                                            </div>
-
-
-                                                                            <div>
-
-                                                                                <strong>
-                                                                                    {{ $product->name }}
-                                                                                </strong>
-
-                                                                                <small>
-
-                                                                                    Rating:
-
-                                                                                    {{
-                                        number_format(
-                                            $product->rating,
-                                            1
-                                        )
-                                                                                }}/5
-
-                                                                                </small>
-
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </td>
+                                                    @if ($productImageUrl)
+                                                        <img src="{{ $productImageUrl }}" alt="{{ $product->name }}"
+                                                            style="
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: contain;
+            ">
+                                                    @else
+                                                        <span>
+                                                            {{ strtoupper(substr($product->name, 0, 1)) }}
+                                                        </span>
+                                                    @endif
+                                                </div>
 
 
-                                                                    {{-- CATEGORY --}}
-                                                                    <td>
+                                                <div>
 
-                                                                        {{
-                                        $product->category_name
-                                        ?? 'Unknown'
-                                                                    }}
+                                                    <strong>
+                                                        {{ $product->name }}
+                                                    </strong>
 
-                                                                    </td>
+                                                    <small>
+
+                                                        Rating:
+
+                                                        {{ number_format($product->rating, 1) }}/5
+
+                                                    </small>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
 
 
-                                                                    {{-- TARGET AUDIENCE --}}
-                                                                    <td>
+                                        {{-- CATEGORY --}}
+                                        <td>
 
-                                                                        @if(
-                                                                                $product->target_audience === 'female'
-                                                                            )
+                                            {{ $product->category_name ?? 'Unknown' }}
 
-                                                                            <span style="
+                                        </td>
+
+
+                                        {{-- TARGET AUDIENCE --}}
+                                        <td>
+
+                                            @if ($product->target_audience === 'female')
+                                                <span
+                                                    style="
                                                                                     display: inline-flex;
                                                                                     padding: 6px 10px;
                                                                                     border-radius: 999px;
@@ -394,14 +357,11 @@
                                                                                     font-weight: 700;
                                                                                     white-space: nowrap;
                                                                                 ">
-                                                                                Women
-                                                                            </span>
-
-                                                                        @elseif(
-                                                                                $product->target_audience === 'male'
-                                                                            )
-
-                                                                            <span style="
+                                                    Women
+                                                </span>
+                                            @elseif($product->target_audience === 'male')
+                                                <span
+                                                    style="
                                                                                     display: inline-flex;
                                                                                     padding: 6px 10px;
                                                                                     border-radius: 999px;
@@ -411,12 +371,11 @@
                                                                                     font-weight: 700;
                                                                                     white-space: nowrap;
                                                                                 ">
-                                                                                Men
-                                                                            </span>
-
-                                                                        @else
-
-                                                                            <span style="
+                                                    Men
+                                                </span>
+                                            @else
+                                                <span
+                                                    style="
                                                                                     display: inline-flex;
                                                                                     padding: 6px 10px;
                                                                                     border-radius: 999px;
@@ -426,149 +385,118 @@
                                                                                     font-weight: 700;
                                                                                     white-space: nowrap;
                                                                                 ">
-                                                                                All / Unisex
-                                                                            </span>
+                                                    All / Unisex
+                                                </span>
+                                            @endif
 
-                                                                        @endif
-
-                                                                    </td>
-
-
-                                                                    {{-- SIZE --}}
-                                                                    <td>
-
-                                                                        {{ $product->size }}
-
-                                                                    </td>
+                                        </td>
 
 
-                                                                    {{-- PRICE --}}
-                                                                    <td class="price-cell">
+                                        {{-- SIZE --}}
+                                        <td>
 
-                                                                        ${{
-                                        number_format(
-                                            $product->price,
-                                            2
-                                        )
-                                                                    }}
+                                            {{ $product->size }}
 
-                                                                    </td>
+                                        </td>
 
 
-                                                                    {{-- STOCK --}}
-                                                                    <td>
+                                        {{-- PRICE --}}
+                                        <td class="price-cell">
 
-                                                                        @if(
-                                                                                $product->stock <= 0
-                                                                            )
+                                            ${{ number_format($product->price, 2) }}
 
-                                                                            <span class="stock-badge out">
-
-                                                                                Out of Stock
-
-                                                                            </span>
-
-                                                                        @elseif(
-                                                                                                            $product->stock <= 10
-                                                                                                        )
-
-                                                                                                        <span class="stock-badge low">
-
-                                                                                                            {{
-                                                                            $product->stock
-                                                                                                            }}
-                                                                                                            Low
-
-                                                                                                        </span>
-
-                                                                        @else
-
-                                                                                                        <span class="stock-badge good">
-
-                                                                                                            {{
-                                                                            $product->stock
-                                                                                                            }}
-
-                                                                                                        </span>
-
-                                                                        @endif
-
-                                                                    </td>
+                                        </td>
 
 
-                                                                    {{-- STATUS --}}
-                                                                    <td>
+                                        {{-- STOCK --}}
+                                        <td>
 
-                                                                        @if(
-                                                                                $product->is_active
-                                                                            )
+                                            @if ($product->stock <= 0)
+                                                <span class="stock-badge out">
 
-                                                                            <span class="status-badge active">
+                                                    Out of Stock
 
-                                                                                Active
+                                                </span>
+                                            @elseif($product->stock <= 10)
+                                                <span class="stock-badge low">
 
-                                                                            </span>
+                                                    {{ $product->stock }}
+                                                    Low
 
-                                                                        @else
+                                                </span>
+                                            @else
+                                                <span class="stock-badge good">
 
-                                                                            <span class="status-badge inactive">
+                                                    {{ $product->stock }}
 
-                                                                                Inactive
+                                                </span>
+                                            @endif
 
-                                                                            </span>
-
-                                                                        @endif
-
-                                                                    </td>
-
-
-                                                                    {{-- ACTIONS --}}
-                                                                    <td>
-
-                                                                        <div class="table-actions">
-
-                                                                            {{-- VIEW --}}
-                                                                            <a href="{{ route(
-                                        'admin.products.show',
-                                        $product->id
-                                    ) }}" class="action-button view">
-                                                                                View
-                                                                            </a>
+                                        </td>
 
 
-                                                                            {{-- EDIT --}}
-                                                                            <a href="{{ route(
-                                        'admin.products.edit',
-                                        $product->id
-                                    ) }}" class="action-button edit">
-                                                                                Edit
-                                                                            </a>
+                                        {{-- STATUS --}}
+                                        <td>
+
+                                            @if ($product->is_active)
+                                                <span class="status-badge active">
+
+                                                    Active
+
+                                                </span>
+                                            @else
+                                                <span class="status-badge inactive">
+
+                                                    Inactive
+
+                                                </span>
+                                            @endif
+
+                                        </td>
 
 
-                                                                            {{-- DELETE --}}
-                                                                            <form method="POST" action="{{ route(
-                                        'admin.products.destroy',
-                                        $product->id
-                                    ) }}" data-confirm data-confirm-type="delete"
-                                                                                data-confirm-title="Delete Product?"
-                                                                                data-confirm-message="Are you sure you want to delete this product? This action cannot be undone."
-                                                                                data-confirm-button="Yes, Delete">
+                                        {{-- ACTIONS --}}
+                                        <td>
 
-                                                                                @csrf
+                                            <div class="table-actions">
 
-                                                                                @method('DELETE')
+                                                {{-- VIEW --}}
+                                                <a href="{{ route('admin.products.show', $product->id) }}"
+                                                    class="action-button view">
+                                                    View
+                                                </a>
 
-                                                                                <button type="submit" class="action-button delete">
-                                                                                    Delete
-                                                                                </button>
 
-                                                                            </form>
+                                                {{-- EDIT --}}
+                                                <a href="{{ route('admin.products.edit', $product->id) }}"
+                                                    class="action-button edit">
+                                                    Edit
+                                                </a>
 
-                                                                        </div>
 
-                                                                    </td>
+                                                {{-- DELETE --}}
+                                                <form method="POST"
+                                                    action="{{ route('admin.products.destroy', $product->id) }}"
+                                                    data-confirm data-confirm-type="delete"
+                                                    data-confirm-title="Delete Product?"
+                                                    data-confirm-message="Are you sure you want to delete this product? This action cannot be undone."
+                                                    data-confirm-button="Yes, Delete">
 
-                                                                </tr>
+                                                    @csrf
+
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="action-button delete">
+                                                        Delete
+                                                    </button>
+
+                                                </form>
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
 
                                 @empty
 
@@ -579,7 +507,6 @@
                                         </td>
 
                                     </tr>
-
                                 @endforelse
 
                             </tbody>
@@ -590,28 +517,22 @@
 
 
                     {{-- PAGINATION --}}
-                    @if($products->hasPages())
+                    @if ($products->hasPages())
 
                         <div class="pagination-wrapper">
 
 
                             {{-- PREVIOUS --}}
-                            @if(
-                                    $products->onFirstPage()
-                                )
-
+                            @if ($products->onFirstPage())
                                 <span class="pagination-button disabled">
 
                                     Previous
 
                                 </span>
-
                             @else
-
                                 <a href="{{ $products->previousPageUrl() }}" class="pagination-button">
                                     Previous
                                 </a>
-
                             @endif
 
 
@@ -630,22 +551,16 @@
 
 
                             {{-- NEXT --}}
-                            @if(
-                                    $products->hasMorePages()
-                                )
-
+                            @if ($products->hasMorePages())
                                 <a href="{{ $products->nextPageUrl() }}" class="pagination-button">
                                     Next
                                 </a>
-
                             @else
-
                                 <span class="pagination-button disabled">
 
                                     Next
 
                                 </span>
-
                             @endif
 
                         </div>

@@ -20,20 +20,16 @@
 
     <div class="admin-layout">
 
-        <!-- =====================================================
+        {{-- =====================================================
+            SIDEBAR
+        ====================================================== --}}
 
-        SIDEBAR
-
-        ===================================================== -->
         @include('admin.partials.sidebar')
 
 
-
-        <!-- =====================================================
-
-        MAIN CONTENT
-
-        ===================================================== -->
+        {{-- =====================================================
+            MAIN CONTENT
+        ====================================================== --}}
 
         <main class="main-content">
 
@@ -41,26 +37,31 @@
 
                 <div>
 
-                    <h1>Product Details</h1>
+                    <h1>
+                        Product Details
+                    </h1>
 
-                    <p>Product #{{ $product->id }}</p>
+                    <p>
+                        Product #{{ $product->id }}
+                    </p>
 
                 </div>
 
 
-
                 <div class="details-header-actions">
 
-                    <a href="{{ route('admin.products.index') }}" class="secondary-button">
-
+                    <a
+                        href="{{ route('admin.products.index') }}"
+                        class="secondary-button"
+                    >
                         ← Products
-
                     </a>
 
-                    <a href="{{ route('admin.products.edit', $product->id) }}" class="primary-button">
-
+                    <a
+                        href="{{ route('admin.products.edit', $product->id) }}"
+                        class="primary-button"
+                    >
                         Edit Product
-
                     </a>
 
                 </div>
@@ -68,8 +69,11 @@
             </header>
 
 
-
             <section class="dashboard-content">
+
+                {{-- =====================================================
+                    SUCCESS MESSAGE
+                ====================================================== --}}
 
                 @if(session('success'))
 
@@ -82,42 +86,157 @@
                 @endif
 
 
+                {{-- =====================================================
+                    PRODUCT IMAGE URL
+                ====================================================== --}}
+
+                @php
+
+                    $productImagePath = trim($product->image ?? '');
+
+                    $productImageUrl = null;
+
+
+                    if ($productImagePath !== '') {
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | FULL URL
+                        |--------------------------------------------------------------------------
+                        |
+                        | Example:
+                        | http://127.0.0.1:8000/storage/products/example.png
+                        |
+                        */
+
+                        if (
+                            str_starts_with($productImagePath, 'http://') ||
+                            str_starts_with($productImagePath, 'https://')
+                        ) {
+
+                            $productImageUrl = $productImagePath;
+
+                        }
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | SEEDED PUBLIC ASSET
+                        |--------------------------------------------------------------------------
+                        |
+                        | Example:
+                        | assets/images/toner/toner_12.png
+                        |
+                        */
+
+                        elseif (
+                            str_starts_with($productImagePath, 'assets/')
+                        ) {
+
+                            $productImageUrl = asset($productImagePath);
+
+                        }
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | STORAGE PATH
+                        |--------------------------------------------------------------------------
+                        |
+                        | Example:
+                        | storage/products/example.png
+                        |
+                        */
+
+                        elseif (
+                            str_starts_with($productImagePath, 'storage/')
+                        ) {
+
+                            $productImageUrl = asset($productImagePath);
+
+                        }
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | ADMIN-UPLOADED PRODUCT IMAGE
+                        |--------------------------------------------------------------------------
+                        |
+                        | Example:
+                        | products/example.png
+                        |
+                        */
+
+                        elseif (
+                            str_starts_with($productImagePath, 'products/')
+                        ) {
+
+                            $productImageUrl = route(
+                                'product.image',
+                                [
+                                    'filename' => basename($productImagePath),
+                                ]
+                            );
+
+                        }
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | SAFE FALLBACK
+                        |--------------------------------------------------------------------------
+                        */
+
+                        else {
+
+                            $productImageUrl = asset($productImagePath);
+
+                        }
+
+                    }
+
+                @endphp
+
 
                 <div class="product-details-card">
 
-                    <!-- =================================================
-
-                    PRODUCT HEADER
-
-                    ================================================= -->
+                    {{-- =================================================
+                        PRODUCT HEADER
+                    ================================================== --}}
 
                     <div class="details-title">
 
                         <div class="details-product-avatar">
 
-                            @if(
+                            @if($productImageUrl)
 
-                                    !empty($product->image) &&
-
-                                    str_starts_with($product->image, 'products/')
-
-                                )
-
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                    class="details-header-product-image">
+                                <img
+                                    src="{{ $productImageUrl }}"
+                                    alt="{{ $product->name }}"
+                                    class="details-header-product-image"
+                                    style="
+                                        width: 100%;
+                                        height: 100%;
+                                        display: block;
+                                        object-fit: contain;
+                                    "
+                                >
 
                             @else
 
                                 <div class="large-product-initial">
 
-                                    {{ strtoupper(substr($product->name, 0, 1)) }}
+                                    {{
+                                        strtoupper(
+                                            substr(
+                                                $product->name,
+                                                0,
+                                                1
+                                            )
+                                        )
+                                    }}
 
                                 </div>
 
                             @endif
 
                         </div>
-
 
 
                         <div>
@@ -141,7 +260,6 @@
                             </p>
 
                         </div>
-
 
 
                         <div class="details-status">
@@ -169,18 +287,17 @@
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    BASIC INFORMATION
-
-                    ================================================= -->
+                    {{-- =================================================
+                        BASIC INFORMATION
+                    ================================================== --}}
 
                     <div class="details-grid">
 
                         <div class="detail-item">
 
-                            <span>Price</span>
+                            <span>
+                                Price
+                            </span>
 
                             <strong>
 
@@ -191,10 +308,11 @@
                         </div>
 
 
-
                         <div class="detail-item">
 
-                            <span>Stock</span>
+                            <span>
+                                Stock
+                            </span>
 
                             <strong>
 
@@ -205,10 +323,11 @@
                         </div>
 
 
-
                         <div class="detail-item">
 
-                            <span>Default Size</span>
+                            <span>
+                                Default Size
+                            </span>
 
                             <strong>
 
@@ -219,10 +338,11 @@
                         </div>
 
 
-
                         <div class="detail-item">
 
-                            <span>Rating</span>
+                            <span>
+                                Rating
+                            </span>
 
                             <strong>
 
@@ -233,10 +353,11 @@
                         </div>
 
 
-
                         <div class="detail-item">
 
-                            <span>Skin Type</span>
+                            <span>
+                                Skin Type
+                            </span>
 
                             <strong>
 
@@ -247,10 +368,11 @@
                         </div>
 
 
-
                         <div class="detail-item">
 
-                            <span>Category</span>
+                            <span>
+                                Category
+                            </span>
 
                             <strong>
 
@@ -263,22 +385,23 @@
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    AVAILABLE SIZES
-
-                    ================================================= -->
+                    {{-- =================================================
+                        AVAILABLE SIZES
+                    ================================================== --}}
 
                     <div class="details-section">
 
-                        <h3>Available Sizes</h3>
+                        <h3>
+                            Available Sizes
+                        </h3>
 
                         <div class="size-list">
 
                             @forelse($product->available_sizes_array as $size)
 
-                                <span>{{ $size }}</span>
+                                <span>
+                                    {{ $size }}
+                                </span>
 
                             @empty
 
@@ -295,53 +418,91 @@
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    PRODUCT IMAGE
-
-                    ================================================= -->
+                    {{-- =================================================
+                        PRODUCT IMAGE
+                    ================================================== --}}
 
                     <div class="details-section">
 
-                        <h3>Product Image</h3>
+                        <h3>
+                            Product Image
+                        </h3>
 
-                        @if(!empty($product->image))
+                        @if($productImageUrl)
 
-                            @if(str_starts_with($product->image, 'products/'))
+                            <div class="details-product-image-box">
 
-                                <div class="details-product-image-box">
+                                <img
+                                    src="{{ $productImageUrl }}"
+                                    alt="{{ $product->name }}"
+                                    class="details-product-image"
+                                    style="
+                                        width: 100%;
+                                        max-width: 320px;
+                                        height: 320px;
+                                        display: block;
+                                        object-fit: contain;
+                                    "
+                                >
 
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                        class="details-product-image">
+                            </div>
 
-                                </div>
 
-                            @else
+                            <div
+                                class="legacy-image-info"
+                                style="margin-top: 14px;"
+                            >
 
-                                <div class="legacy-image-info">
+                                <strong>
+                                    Image Path
+                                </strong>
 
-                                    <strong>
+                                <span>
 
-                                        Existing Flutter Asset
+                                    {{ $productImagePath }}
 
-                                    </strong>
+                                </span>
 
-                                    <span>
-
-                                        {{ $product->image }}
-
-                                    </span>
+                                @if(
+                                    str_starts_with(
+                                        $productImagePath,
+                                        'assets/'
+                                    )
+                                )
 
                                     <small>
 
-                                        This product still uses its original Flutter asset image.
+                                        Seeded product image stored in the
+                                        Laravel public assets directory.
 
                                     </small>
 
-                                </div>
+                                @elseif(
+                                    str_starts_with(
+                                        $productImagePath,
+                                        'products/'
+                                    )
+                                )
 
-                            @endif
+                                    <small>
+
+                                        Product image uploaded through the
+                                        Lumière Admin System.
+
+                                    </small>
+
+                                @else
+
+                                    <small>
+
+                                        Product image used by the Lumière
+                                        application.
+
+                                    </small>
+
+                                @endif
+
+                            </div>
 
                         @else
 
@@ -356,86 +517,92 @@
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    DESCRIPTION
-
-                    ================================================= -->
+                    {{-- =================================================
+                        DESCRIPTION
+                    ================================================== --}}
 
                     <div class="details-section">
 
-                        <h3>Description</h3>
+                        <h3>
+                            Description
+                        </h3>
 
                         <p>
 
-                            {{ $product->description ?: 'No description provided.' }}
+                            {{
+                                $product->description
+                                ?: 'No description provided.'
+                            }}
 
                         </p>
 
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    PRODUCT DETAILS
-
-                    ================================================= -->
+                    {{-- =================================================
+                        PRODUCT DETAILS
+                    ================================================== --}}
 
                     <div class="details-section">
 
-                        <h3>Product Details</h3>
+                        <h3>
+                            Product Details
+                        </h3>
 
                         <p>
 
-                            {{ $product->product_details ?: 'No additional product details.' }}
+                            {{
+                                $product->product_details
+                                ?: 'No additional product details.'
+                            }}
 
                         </p>
 
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    INGREDIENTS
-
-                    ================================================= -->
+                    {{-- =================================================
+                        INGREDIENTS
+                    ================================================== --}}
 
                     <div class="details-section">
 
-                        <h3>Ingredients</h3>
+                        <h3>
+                            Ingredients
+                        </h3>
 
                         <p>
 
-                            {{ $product->ingredients ?: 'No ingredients provided.' }}
+                            {{
+                                $product->ingredients
+                                ?: 'No ingredients provided.'
+                            }}
 
                         </p>
 
                     </div>
 
 
-
-                    <!-- =================================================
-
-                    DELETE PROTECTION
-
-                    ================================================= -->
+                    {{-- =================================================
+                        DELETE PROTECTION
+                    ================================================== --}}
 
                     @if($usedInOrders)
 
                         <div class="delete-warning">
 
-                            <strong>Protected Product</strong>
+                            <strong>
+                                Protected Product
+                            </strong>
 
                             <p>
 
-                                This product appears in an existing customer order,
+                                This product appears in an existing
+                                customer order, so it cannot be
+                                permanently deleted.
 
-                                so it cannot be permanently deleted.
-
-                                You may edit it or mark it inactive instead.
+                                You may edit it or mark it inactive
+                                instead.
 
                             </p>
 
@@ -447,26 +614,43 @@
 
                             <div>
 
-                                <strong>Delete Product</strong>
+                                <strong>
+                                    Delete Product
+                                </strong>
 
                                 <p>
 
-                                    Permanently remove this product from the Lumière store.
+                                    Permanently remove this product from
+                                    the Lumière store.
 
                                 </p>
 
                             </div>
 
 
-
-                            <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}"
-                                onsubmit="return confirm('Are you sure you want to permanently delete this product?');">
+                            <form
+                                method="POST"
+                                action="{{
+                                    route(
+                                        'admin.products.destroy',
+                                        $product->id
+                                    )
+                                }}"
+                                onsubmit="
+                                    return confirm(
+                                        'Are you sure you want to permanently delete this product?'
+                                    );
+                                "
+                            >
 
                                 @csrf
 
                                 @method('DELETE')
 
-                                <button type="submit" class="danger-button">
+                                <button
+                                    type="submit"
+                                    class="danger-button"
+                                >
 
                                     Delete Product
 
@@ -481,6 +665,9 @@
                 </div>
 
 
+                {{-- =====================================================
+                    FOOTER
+                ====================================================== --}}
 
                 <footer class="dashboard-footer">
 
