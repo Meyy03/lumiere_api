@@ -2540,3 +2540,51 @@
     object-fit: cover;
     display: block;
 }
+
+/* =========================================================
+   EDIT CATEGORY FORM SPACING FIX
+========================================================= */
+
+.category-form-card form {
+    padding: 0;
+}
+
+.category-form-grid {
+    padding: 24px 28px 28px;
+    box-sizing: border-box;
+}
+
+.category-form-grid .form-group {
+    min-width: 0;
+}
+
+.category-form-grid .form-group-full {
+    grid-column: 1 / -1;
+}
+
+.category-form-actions {
+    padding: 20px 28px 24px;
+    border-top: 1px solid #f0e2e6;
+}
+
+/* Keep the category image area inside the card */
+.category-image-section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .category-form-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .category-edit-summary {
+        grid-template-columns: 1fr !important;
+    }
+
+    .category-form-actions {
+        padding: 18px 20px;
+    }
+}
